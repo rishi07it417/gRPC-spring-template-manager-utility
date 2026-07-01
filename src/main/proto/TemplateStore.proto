@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package templateManager.templateStore;
+
+option java_multiple_files = true;
+option java_package = "com.example.grpc.template";
+option java_outer_classname = "TemplateStoreProto";
+
+import "google/protobuf/timestamp.proto";
+
+message TemplateStore {
+  int64 template_store_id = 1;
+  string template_name = 2;
+  string created_by = 3;
+  google.protobuf.Timestamp created_date = 4;
+  string updated_by = 5;
+  google.protobuf.Timestamp updated_date = 6;
+  bytes template = 7;
+}
+
+message Empty {
+
+}
+
+
+service TemplateStoreService {
+  rpc GetAllTemplate(Empty)
+      returns (stream TemplateStore);
+
+}
